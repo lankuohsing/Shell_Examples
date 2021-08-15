@@ -8,10 +8,10 @@ function getdir(){
         dir_or_file=$1"/"$element
         if [ -d $dir_or_file ]
         then
-            getdir $dir_or_file
+            getdir $dir_or_file $2
         else
             ori_file=$dir_or_file
-            if [ "{ori_file##*.}"x = "wav"x ]; then
+            if [ "${ori_file##*.}"x = "wav"x ]; then
                 new_file=$2 "${ori_file#*$1}"
                 echo $ori_file
                 echo $new_file
@@ -22,4 +22,4 @@ function getdir(){
 }
 source_dir="./source"
 target_dir="./target"
-getdir $source $target
+getdir $source_dir $target_dir
